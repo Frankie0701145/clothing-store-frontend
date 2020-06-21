@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import M from 'materialize-css';
+import 'materialize-css';
 import ShowProductsComponent from "./components/ShowProducts.component";
+import AddProduct from "./components/AddProduct.component"
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import './App.css';
 
@@ -12,11 +13,11 @@ class App extends Component{
         
           <div className="navbar-fixed">
             <nav>
-              <div class="nav-wrapper">
-                <NavLink to="/" class="brand-logo">Clothing Inventory</NavLink>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><NavLink to="#">Inventory</NavLink></li>
-                  <li><NavLink to="#">Add Product</NavLink></li>
+              <div className="nav-wrapper">
+                <NavLink to="/" className="brand-logo">Clothing Inventory</NavLink>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                  <li><NavLink to="/">Inventory</NavLink></li>
+                  <li><NavLink to="/add_product">Add Product</NavLink></li>
                   <li><NavLink to="#">JavaScript</NavLink></li>
                 </ul>
               </div>
@@ -26,7 +27,7 @@ class App extends Component{
           <div>
             <Switch>
               <Route path="/" component={ShowProductsComponent} exact></Route>
-              <Route></Route>
+              <Route path="/add_product" component={AddProduct}></Route>
               <Route></Route>
             </Switch>
           </div> 
