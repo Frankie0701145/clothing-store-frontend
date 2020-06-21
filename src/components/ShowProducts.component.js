@@ -70,10 +70,9 @@ class ShowProducts extends Component {
 
                                             </div>
 
-                                            
-                                            {/* <h7>
+                                            <h7>
                                                 Total Units: {product.total_units}
-                                            </h7> */}
+                                            </h7>
                                             {/* Table */}
                                             <table>
                                                 <thead>
