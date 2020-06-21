@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import  './ShowProducts.component.css';
+import { NavLink } from 'react-router-dom';
 
 class ShowProducts extends Component {
 
@@ -50,11 +52,25 @@ class ShowProducts extends Component {
                             return (
                                 <div className="container" key={product.id}>
                                     <div className="row">
-                                        <div className="col s9">
+                                        <div className="col s12">
                                             {/* Heading */}
-                                            <h4>
-                                                {product.product_name}
-                                            </h4>
+                                            <div className="row valign-wrapper">
+
+                                                <div className="col s9">
+                                                    <h4>
+                                                        {product.product_name}
+                                                    </h4>
+                                                </div>
+                                                <div className="col s2 ">
+                                                    <NavLink className="waves-effect waves-light btn" to={`/addSubTypeCombination/${product.id}/${product.product_name}`}>
+                                                        Add <i className="material-icons left">add</i>
+                                                    </NavLink>
+                                                    
+                                                </div>
+
+                                            </div>
+
+                                            
                                             {/* <h7>
                                                 Total Units: {product.total_units}
                                             </h7> */}
@@ -93,10 +109,9 @@ class ShowProducts extends Component {
 
     componentDidMount(){
         axios.get("/products/types/sub_types").then((res)=>{
-            console.log(res.data)
-            this.setState({products: res.data});
+            this.setState({...this.state,products: res.data});
         }).catch((err)=>{
-            console.log(err);
+            console.error(err);
         })
     }
 }

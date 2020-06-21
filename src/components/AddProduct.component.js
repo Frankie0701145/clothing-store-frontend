@@ -15,7 +15,7 @@ class AddProduct extends Component {
             M.toast({html: "Product Added"})
         }).catch((err)=>{
             let errors = err.response.data.errors;
-            console.log(errors);
+            console.error(errors);
             errors.forEach((err)=>{
                 M.toast({html: err});
             });   

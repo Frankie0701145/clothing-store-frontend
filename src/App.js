@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'materialize-css';
 import ShowProductsComponent from "./components/ShowProducts.component";
-import AddProduct from "./components/AddProduct.component"
+import AddProduct from "./components/AddProduct.component";
+import AddSubTypeCombination from './components/AddSubTypeCombination.component';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import './App.css';
 
@@ -28,7 +29,7 @@ class App extends Component{
             <Switch>
               <Route path="/" component={ShowProductsComponent} exact></Route>
               <Route path="/add_product" component={AddProduct}></Route>
-              <Route></Route>
+              <Route path="/addSubTypeCombination/:id/:product_name" component={AddSubTypeCombination}></Route>
             </Switch>
           </div> 
      </Router>
