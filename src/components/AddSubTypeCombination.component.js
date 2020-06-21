@@ -43,6 +43,10 @@ class AddSubTypeCombination extends Component {
                             isMulti={true}
                             isSearchable={true}
                             onChange={this.handleChange}
+                            styles={{
+                                // Fixes the overlapping problem of the component
+                                menu: provided => ({ ...provided, zIndex: 9999 })
+                            }}
                          />
                          
                     </div>
@@ -95,7 +99,16 @@ class AddSubTypeCombination extends Component {
                 <div className="row">
                     <div className="container">
                         <div className="col s10">
-                            <form onSubmit={this.submit}>
+
+                            <div className="row">
+                                     <div className="col offset s8">
+                                        <button className="btn waves-effect waves-light light-green darken-4" type="submit" name="action" disabled={this.props.loading}>
+                                            Add Sub Types
+                                        </button>
+                                    </div>
+                            </div>
+
+                            <form onSubmit={this.submit}>   
                                 <div className="row">
                                     <div className="input-field col s6">
                                         <input id="quantity" type="number" name="quantity" className="validate" required/>
@@ -112,9 +125,11 @@ class AddSubTypeCombination extends Component {
                                         }
                                 </div>
                                 <div className="row">
-                                    <button className="btn waves-effect waves-light light-blue darken-4" type="submit" name="action" disabled={this.props.loading}>
-                                        Submit
-                                    </button>
+                                    <div className="col">
+                                        <button className="btn waves-effect waves-light light-blue darken-4" type="submit" name="action" disabled={this.props.loading}>
+                                            Combine
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
