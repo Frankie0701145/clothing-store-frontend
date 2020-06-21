@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from 'react';
 import Select from 'react-select';
+import FormSubType from "./modal/formSubType";
 let M = require("materialize-css");
 
 class AddSubTypeCombination extends Component {
@@ -11,7 +12,7 @@ class AddSubTypeCombination extends Component {
             sub_types: [],
             selectedOptions: null
         }
-    }
+    };
 
     selectOptions = (sub_types)=>{   
             if(this.state.sub_types == null){
@@ -100,14 +101,6 @@ class AddSubTypeCombination extends Component {
                     <div className="container">
                         <div className="col s10">
 
-                            <div className="row">
-                                     <div className="col offset s8">
-                                        <button className="btn waves-effect waves-light light-green darken-4" type="submit" name="action" disabled={this.props.loading}>
-                                            Add Sub Types
-                                        </button>
-                                    </div>
-                            </div>
-
                             <form onSubmit={this.submit}>   
                                 <div className="row">
                                     <div className="input-field col s6">
@@ -126,12 +119,23 @@ class AddSubTypeCombination extends Component {
                                 </div>
                                 <div className="row">
                                     <div className="col">
-                                        <button className="btn waves-effect waves-light light-blue darken-4" type="submit" name="action" disabled={this.props.loading}>
+                                        <button className="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">
                                             Combine
                                         </button>
                                     </div>
                                 </div>
                             </form>
+
+                            <div className="row">
+                                     <div className="col offset s8">
+                                        <button  data-target="modal1" className="btn modal-trigger">
+                                            Add Sub Types
+                                        </button>
+                                    </div>
+                            </div>
+
+                            {/* Modal Structure */}
+                            <FormSubType product_id={this.props.match.params.id} addSubTypeOptionState={this.addSubTypeOptionState}/>
                         </div>
                     </div>
                 </div>
@@ -139,25 +143,43 @@ class AddSubTypeCombination extends Component {
         )
     }
 
+
+    //method to be passed to the FormSubType component as a prop
+    modalAddSubType = (sub_types)=>{
+        //add the sub_types options to the state
+        this.addSubTypeOptionState(sub_types);
+        //open a toast
+        M.toast({html: "Sub Type Added Successfully"});
+    }
+
+    // Add the sub_types and by the modal to the state
+    addSubTypeOptionState = (sub_types)=>{
+        let optionsSubType=[];
+        //create the option passed to the Select component
+        optionsSubType = sub_types.map((sub_type)=>{
+            return {
+                value: sub_type.id,
+                label: `${sub_type.name}: ${sub_type.value}`
+            }
+        })
+        //populate the option to the state
+        let new_sub_types = [...optionsSubType,...this.state.sub_types ]
+        this.setState({...this.state, sub_types: new_sub_types});
+    }
+
     componentDidMount(){
+        //fetch sub_types
         axios.get(`/sub_types/${this.props.match.params.id}`).then((response)=>{
-            let optionsSubType=[];
-            let option;
-            response.data.sub_types.forEach(sub_type => {
-                option= {
-                    value: sub_type.id,
-                    label: `${sub_type.name}: ${sub_type.value}`
-                }
-                optionsSubType.push(option)
-            });
-            this.setState({...this.state, sub_types: optionsSubType });
-            console.log(this.state.sub_types);
+            //add sub_types to the state 
+            this.addSubTypeOptionState(response.data.sub_types);
         }).catch((err)=>{
             console.error(err);
         });
-        var elems = document.querySelectorAll('select');
-        M.FormSelect.init(elems, {});
+        let elemsModal = document.querySelectorAll('.modal');
+         M.Modal.init(elemsModal, {});
     }
 }
 
 export default AddSubTypeCombination;
+
+// data-target="modal1" className="btn modal-trigger"
