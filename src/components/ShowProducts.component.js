@@ -56,14 +56,14 @@ class ShowProducts extends Component {
                                             {/* Heading */}
                                             <div className="row valign-wrapper">
 
-                                                <div className="col s9">
+                                                <div className="col s7">
                                                     <h4>
                                                         {product.product_name}
                                                     </h4>
                                                 </div>
-                                                <div className="col s2 ">
+                                                <div className="col s5 ">
                                                     <NavLink className="waves-effect waves-light btn" to={`/addSubTypeCombination/${product.id}/${product.product_name}`}>
-                                                        Add <i className="material-icons left">add</i>
+                                                        Add SubType Combo
                                                     </NavLink>
                                                     
                                                 </div>

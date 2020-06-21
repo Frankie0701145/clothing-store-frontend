@@ -14,12 +14,11 @@ class App extends Component{
         
           <div className="navbar-fixed">
             <nav>
-              <div className="nav-wrapper">
+              <div className="nav-wrapper container">
                 <NavLink to="/" className="brand-logo">Clothing Inventory</NavLink>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                   <li><NavLink to="/">Inventory</NavLink></li>
                   <li><NavLink to="/add_product">Add Product</NavLink></li>
-                  <li><NavLink to="#">JavaScript</NavLink></li>
                 </ul>
               </div>
             </nav>
