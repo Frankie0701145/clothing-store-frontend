@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import M from 'materialize-css';
+import ShowProductsComponent from "./components/ShowProducts.component";
 import './App.css';
 
-function App() {
-  return (
-    <div >
-    </div>
-  );
+
+class App extends Component{
+  render(){
+    return(
+      <div>
+        <ShowProductsComponent/>
+      </div>
+    )
+  }
 }
 
 export default App;
