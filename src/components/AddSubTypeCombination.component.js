@@ -32,7 +32,7 @@ class AddSubTypeCombination extends Component {
             }else if(this.state.sub_types.length < 1){
                 return (
                     <div>
-                        <h3>Add Subtypes</h3>
+                        <h6>Add Subtypes</h6>
                     </div>
                 )
             }else{
